@@ -19,8 +19,7 @@ import static org.example.utils.Mapper.*;
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserRep userRep;
-    @Autowired
-    private ToDoService toDoService;
+
 
 
     @Override
@@ -101,13 +100,13 @@ public class UserServiceImpl implements UserService{
         return deleteResponse;
     }
 
-    @Override
-    public List<ToDo> getUserTask(String username) {
-        User user = findByUsername(username);
-        user.setUsername(username);
-        userRep.save(user);
-        return toDoService.getAllTodos();
-    }
+//    @Override
+//    public List<ToDo> getUserTask(String username) {
+//        User user = findByUsername(username);
+//        user.setUsername(username);
+//        userRep.save(user);
+//        return toDoService.getAllTodos();
+//    }
 
 
 

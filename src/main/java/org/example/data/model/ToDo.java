@@ -3,6 +3,8 @@ package org.example.data.model;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDate;
 import java.util.Date;
 @Setter
 @Getter
@@ -14,7 +16,7 @@ public class ToDo {
     private String id;
     private String title;
     private String description;
-    private Date dueDate;
+    private LocalDate localDate;
     private boolean completed;
     private String userId;
 

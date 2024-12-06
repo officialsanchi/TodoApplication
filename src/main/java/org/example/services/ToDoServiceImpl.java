@@ -18,42 +18,47 @@ public class ToDoServiceImpl implements ToDoService {
 
     @Autowired
     private ToDoRep toDoRepository;
+
     @Override
     public CreateTaskResponse createTodo(CreateTaskRequest createTaskRequest) {
 
         ToDo todo = new ToDo();
         todo.setTitle(createTaskRequest.getTitle());
         todo.setDescription(createTaskRequest.getDescription());
-        todo.setDueDate(createTaskRequest.getDueDate());
+        todo.setLocalDate(createTaskRequest.getLocalDate());
         todo.setCompleted(false);
-
         ToDo savedTodo = toDoRepository.save(todo);
-        return null;
+        CreateTaskResponse taskResponse = new CreateTaskResponse();
+        taskResponse.setId(savedTodo.getId());
+        taskResponse.setMessage("successfully created a new task");
+        return taskResponse;
     }
 
     @Override
     public EditTaskResponse editTodo(EditTaskRequest editTaskRequest) {
-//        Optional<ToDo> todoOptional = toDoRepository.findById(editTaskRequest.getId());
-//        if (todoOptional.isPresent()) {
-//            ToDo todo = todoOptional.get();
-//            todo.setTitle(editTaskRequest.getTitle());
-//            todo.setDescription(editTaskRequest.getDescription());
-//            todo.setDueDate(editTaskRequest.getDueDate());
-//            todo.setUserId(editTaskRequest.getUserId());
-//            todo.setCompleted(editTaskRequest.isCompleted());
-//
-//            toDoRepository.save(todo);
+        Optional<ToDo> todoOptional = toDoRepository.findById(editTaskRequest.getId());
+        if (todoOptional.isPresent()) {
+            ToDo todo = todoOptional.get();
+            todo.setTitle(editTaskRequest.getTitle());
+            todo.setDescription(editTaskRequest.getDescription());
+            todo.setLocalDate(editTaskRequest.getLocalDate());
+            todo.setCompleted(true);
+            toDoRepository.save(todo);
+        }
 //            return new EditTaskResponse(true);
 //        } else {
 //            return new EditTaskResponse(false);
 //        }
         return null;
+
     }
 
     @Override
     public DeleteTaskResponse deleteTodo(DeleteTaskRequest deleteTaskRequest) {
-//        toDoRepository.deleteById(deleteTaskRequest.getId());
-        return null;
+        toDoRepository.deleteById(deleteTaskRequest.getId());
+        DeleteTaskResponse response = new DeleteTaskResponse();
+        response.setMessage("Successfully deleted");
+        return response;
     }
 
     @Override

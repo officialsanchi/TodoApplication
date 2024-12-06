@@ -7,6 +7,7 @@ import org.example.dtos.request.RegisterUserRequest;
 import org.example.dtos.request.UpdateUserRequest;
 import org.example.dtos.response.*;
 import org.example.exception.ToDoException;
+import org.example.services.ToDoService;
 import org.example.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +19,11 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-//@RequestMapping("/User")
+@RequestMapping("/api")
 public class UserController {
     @Autowired
     private UserService  userService;
+
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterUserRequest registerUserRequest) {
@@ -59,4 +61,5 @@ public class UserController {
             return new ResponseEntity<>(new APIResponse(false, e.getMessage()), BAD_REQUEST);
         }
     }
+
 }

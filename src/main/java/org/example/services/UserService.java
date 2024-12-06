@@ -12,5 +12,5 @@ public interface UserService {
     LogoutUserResponse logout(LogoutRequest logoutUserRequest);
     UpdateResponse update(UpdateUserRequest updateUserRequest);
     DeleteResponse delete(DeleteUserRequest deleteUserRequest);
-    List<ToDo> getUserTask(String username);
+//    List<ToDo> getUserTask(String username);
 }

@@ -1,2 +1,8 @@
-package org.example.dtos.response;public class DeleteTaskResponse {
+package org.example.dtos.response;
+
+import lombok.Data;
+
+@Data
+public class DeleteTaskResponse {
+    private String message;
 }
